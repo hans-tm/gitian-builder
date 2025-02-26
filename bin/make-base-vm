@@ -199,7 +199,8 @@ FROM $base_image
 
 ENV DEBIAN_FRONTEND=noninteractive
 RUN echo 'Acquire::http { Proxy "$MIRROR_BASE"; };' > /etc/apt/apt.conf.d/50cacher
-RUN apt-get update && apt-get --no-install-recommends --install-suggests -y install $addpkg
+RUN apt-get update && apt-get --no-install-recommends -y install $addpkg
+RUN apt-get -y install autoconf-archive 
 
 RUN useradd -ms /bin/bash -U $DISTRO
 USER $DISTRO:$DISTRO
